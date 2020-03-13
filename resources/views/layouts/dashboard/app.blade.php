@@ -16,7 +16,11 @@
 
     {{--jquery--}}
     <script src="{{ asset('dashboard_files/js/jquery-3.3.1.min.js') }}"></script>
-
+    <script src="https://kit.fontawesome.com/bcd3dd02f3.js" crossorigin="anonymous"></script>
+        {{--<li><a class="treeview-item" href="ui-cards.html"><i class="icon fa fa-circle-o"></i> Cards</a></li>--}}
+        {{--<li><a class="treeview-item" href="widgets.html"><i class="icon fa fa-circle-o"></i> Widgets</a></li>--}}
+        {{--</ul>--}}
+        {{--</li>--}}
     {{--noty--}}
     <link rel="stylesheet" href="{{ asset('dashboard_files/plugins/noty/noty.css') }}">
     <script src="{{ asset('dashboard_files/plugins/noty/noty.min.js') }}"></script>
