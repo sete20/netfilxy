@@ -38,4 +38,41 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-}
+
+
+    public function getNameAttribute($value){
+        return ucfirst($value);
+     }
+
+  
+     public function scopeWhenSearch($query , $search){
+
+        return $query->when($search,function($q) use($search){
+            
+            return $q->where('name',"like","%$search%");
+     
+        });
+         
+        }
+
+     public function scopeWhereRole($query , $role_name){
+
+        return $query->whereHas('roles',function($q) use($role_name){
+            
+            return $q->whereIn('name',(array)$role_name);
+        });
+         
+        }
+
+
+        public function scopeWhereRoleNot($query , $role_name){
+
+            return $query->whereHas('roles',function($q) use($role_name){
+                
+                return $q->whereNotIn('name',(array)$role_name);
+            });
+             
+            }
+
+
+    }
