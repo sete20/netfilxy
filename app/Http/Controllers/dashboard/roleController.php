@@ -7,7 +7,14 @@ use Illuminate\Http\Request;
 
 class roleController extends Controller
 {
-    
+    public function __construct()
+    {
+        $this->middleware('permission:read_roles')->only(['index']);
+        $this->middleware('permission:create_roles')->only(['create', 'store']);
+        $this->middleware('permission:update_roles')->only(['edit', 'update']);
+        $this->middleware('permission:delete_roles')->only(['destroy']);
+
+    }// end of __constr
     public function index(role $role )
     {
         $roles = role::WhereRoleNot(['super_admin'])->WhenSearch(request()->search)->with('permissions')->paginate(10);

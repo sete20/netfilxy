@@ -28,7 +28,7 @@
                     </div>
 
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-edit"></i> Edit</button>
+                        <button type="submit"  class="btn btn-primary"><i class="fa fa-edit"></i> Edit</button>
                     </div>
 
                 </form><!-- end of form -->

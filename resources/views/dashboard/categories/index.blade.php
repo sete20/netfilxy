@@ -60,14 +60,20 @@
                                         <td>{{ $category->name }}</td>
                                         <td>{{ $category->movies_count }}</td>
                                         <td>
-                                   
+                                        @if(auth()->user()->hasPermission('update_categories'))
                                                 <a href="{{ route('dashboard.categories.edit', $category->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Edit</a>
-                                        
-                                                        <form method="post" action="{{ route('dashboard.categories.destroy', $category->id) }}" style="display: inline-block;">
-                                                            @csrf
-                                                            @method('delete')
-                                                            <button type="submit" class="btn btn-danger btn-sm delete"><i class="fa fa-trash"></i> Delete</button>
-                                                        </form><!-- end of form -->
+                                            @else
+                                            <a href="#"  disabled="" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Edit</a>
+                                        @endif 
+                                        @if(auth()->user()->hasPermission('delete_categories'))
+                                                <form method="post" action="{{ route('dashboard.categories.destroy', $category->id) }}" style="display: inline-block;">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" class="btn btn-danger btn-sm delete"><i class="fa fa-trash"></i> Delete</button>
+                                                </form><!-- end of form -->
+                                                    @else
+                                                <button type="submit" class="btn btn-danger btn-sm delete" disabled=""><i class="fa fa-trash"></i> Delete</button>
+                                        @endif
                                   
                                         </td>
                                     </tr>

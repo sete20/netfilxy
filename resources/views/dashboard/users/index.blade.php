@@ -23,6 +23,8 @@
                         <form action="">
                             <div class="row">
 
+
+
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <input type="text" name="search" autofocus class="form-control" placeholder="search" value="{{ request()->search }}">
@@ -31,10 +33,25 @@
 
 
                                 <div class="col-md-4">
-                                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Search</button>
-                           
-                                        <a href="{{ route('dashboard.users.create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Add</a>
+                                    <div class="form-group">
 
+                                    <select name="role_id" class="form-control">
+                                    <option value="all-roles">All Roles</option>
+                                 
+                                    @foreach($roles as $role)
+                                    <option value= {{$role->id}} {{request()->role_id == $role->name ? "selected" : '' }}>{{$role->name}}</option>
+                                    @endforeach
+                                    </select>
+                                    </div>
+                                </div><!-- end-->
+                                
+                                <div class="col-md-4">
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Search</button>
+                                    @if (auth()->user()->hasPermission('create_users'))
+                                        <a href="{{ route('dashboard.users.create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Add</a>
+                                    @else
+                                    <a href="#" disabled="" class="btn btn-primary"><i class="fa fa-plus"></i> Add</a>
+                                    @endif
                                 </div>
                             </div><!-- end of row -->
 
@@ -71,12 +88,13 @@
                                         @endforeach
                                         </td>
                                         <td>
-                                            @if (auth()->user()->hasPermission('update_users'))
+                                        @if (auth()->user()->hasPermission('update_users'))
                                                 <a href="{{ route('dashboard.users.edit', $user->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Edit</a>
                                             @else
                                                 <a href="#" disabled class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Edit</a>
-                                            @endif
-                                            @if (auth()->user()->hasPermission('delete_users'))
+                                        @endif
+                                        
+                                        @if (auth()->user()->hasPermission('delete_users'))
                                                 <form method="post" action="{{ route('dashboard.users.destroy', $user->id) }}" style="display: inline-block;">
                                                     @csrf
                                                     @method('delete')

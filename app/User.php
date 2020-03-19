@@ -55,21 +55,33 @@ class User extends Authenticatable
          
         }
 
-     public function scopeWhereRole($query , $role_name){
+        
+     public function scopeWhenRole($query , $role_id){
 
-        return $query->whereHas('roles',function($q) use($role_name){
+        return $query->when($role_id, function($q) use($role_id){
             
-            return $q->whereIn('name',(array)$role_name);
+            return $this->scopeWhereRole($q,(array)$role_id);
         });
          
         }
 
+     public function scopeWhereRole($query , $role_name){
+
+        return $query->whereHas('roles',function($q) use($role_name){            
+            return $q->whereIn('name',(array)$role_name)
+            ->orWhereIn('id', (array)$role_name);
+        });
+         
+        }
+    public function scopWhereRole($query , $role_id){
+        return $query->when($role_id,function($q) use ($role_id){} );
+    }
 
         public function scopeWhereRoleNot($query , $role_name){
 
             return $query->whereHas('roles',function($q) use($role_name){
-                
-                return $q->whereNotIn('name',(array)$role_name);
+                return $q->whereNotIn('name',(array)$role_name)
+                ->WhereNotIn('id', (array) $role_name);
             });
              
             }

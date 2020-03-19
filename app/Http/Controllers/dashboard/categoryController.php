@@ -7,7 +7,14 @@ use Illuminate\Http\Request;
 use App\category;
 class categoryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:read_categories')->only(['index']);
+        $this->middleware('permission:create_categories')->only(['create', 'store']);
+        $this->middleware('permission:update_categories')->only(['edit', 'update']);
+        $this->middleware('permission:delete_categories')->only(['destroy']);
 
+    }// end of __construct
     public function index(category $category )
     {
         $categories = Category::WhenSearch(request()->search)->paginate(2);
