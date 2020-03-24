@@ -15,6 +15,6 @@ Route::prefix('dashboard')->name('dashboard.')
     route::get('/setting/social_inks','settingsController@social_links')->name('settings.social_links');
 
     route::post('/setting','settingsController@store')->name('settings');
-    
+    Route::resource('movies', 'MovieController');
     
 });

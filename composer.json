@@ -11,6 +11,8 @@
         "php": "^7.2.5",
         "anlutro/l4-settings": "^0.11.0",
         "barryvdh/laravel-debugbar": "^3.2",
+        "doctrine/cache": "^1.10",
+        "evenement/evenement": "^3.0",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^6.3",
@@ -18,7 +20,10 @@
         "laravel/socialite": "^4.3",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
-        "santigarcor/laratrust": "5.2.*"
+        "neutron/temporary-filesystem": "^2.4",
+        "pbmedia/laravel-ffmpeg": "^6.0",
+        "santigarcor/laratrust": "5.2.*",
+        "symfony/filesystem": "^5.0"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

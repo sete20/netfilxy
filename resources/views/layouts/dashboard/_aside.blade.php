@@ -10,6 +10,9 @@
         @if(auth()->user()->hasRole('super_admin|admin'))
             <li><a class="app-menu__item" href="{{ route('dashboard.welcome') }}"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a></li>
         @endif
+        @if(auth()->user()->hasPermission('read_roles'))
+            <li><a class="app-menu__item" href="{{ route('dashboard.movies.index') }}"><i class="app-menu__icon fa fa-play"></i><span class="app-menu__label">Movies</span></a></li>
+        @endif
         @if(auth()->user()->hasPermission('read_users'))
             <li><a class="app-menu__item" href="{{ route('dashboard.users.index') }}"><i class="app-menu__icon fa fa-users"></i><span class="app-menu__label">users</span></a></li>
         @endif
