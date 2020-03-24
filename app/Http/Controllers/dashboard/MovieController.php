@@ -3,9 +3,13 @@
 namespace App\Http\Controllers\dashboard;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Movie;
+use App\Category;
 use App\Jobs\StreamMovie;
+use App\Movie;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
 
 class MovieController extends Controller
 {
