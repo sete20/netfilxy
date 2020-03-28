@@ -16,5 +16,10 @@ class category extends Model
          return $query->when($search, function ($q) use( $search){
             return $q->where('name','like',"%$search%");
          });
+
+         
       }
+      public function movies(){
+         return $this->belongsToMany(movie::class,'movie_category');
+     }
 }//end category

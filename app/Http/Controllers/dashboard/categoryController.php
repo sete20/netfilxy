@@ -17,7 +17,7 @@ class categoryController extends Controller
     }// end of __construct
     public function index(category $category )
     {
-        $categories = Category::WhenSearch(request()->search)->paginate(2);
+        $categories = Category::WhenSearch(request()->search)->withCount('movies')->paginate(2);
         return view('dashboard.categories.index', compact('categories'));
     }
 

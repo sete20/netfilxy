@@ -47,7 +47,7 @@
 
                 <form id="movie__properties"
                       method="post"
-                      action="{{ route('dashboard.movies.update', $movie->id) }}"
+                      action="{{ route('dashboard.movies.update', ['movie'=>$movie->id,'type'=>'publish']) }}"
                       enctype="multipart/form-data"
                       style="display: {{ $errors->any() ? 'block' : 'none' }};"
                 >
@@ -88,7 +88,21 @@
                         <input type="file" name="image" class="form-control">
                     </div>
 
-         
+                    {{--categories--}}
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select name="categories[]" class="form-control select2" multiple>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}"
+                                        {{$category->id}}
+                                >
+                                {{ in_array($category->id, $movie->categories->pluck('id')->toArray()) ? 'selected' : ''}}
+
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
 
                     {{--year--}}
                     <div class="form-group">

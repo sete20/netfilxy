@@ -1,4 +1,5 @@
-<header class="app-header"><a class="app-header__logo" style="font-family: 'lato' ,sans-serif;" href="index.html">Netflixify</a>
+<header class="app-header"><a class="app-header__logo" style="font-family: 'lato' ,sans-serif;" 
+href="{{route('dashboard.welcome')}}">Netflixify</a>
     <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
     <!-- Navbar Right Menu-->
     <ul class="app-nav">
