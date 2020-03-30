@@ -25,6 +25,7 @@ class CreateMoviesTable extends Migration
             $table->integer('percent')->default(0);
             $table->integer('views')->default(0);
             $table->timestamps();
+       
         });
     }
 
