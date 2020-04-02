@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Storage;
 class Movie extends Model
 {
     protected $fillable = ['name', 'description', 'path', 'rating', 'year', 'poster', 'image', 'percent'];
-    protected $appends = ['poster_path','image_path'];
+    protected $appends = ['poster_path','image_path','is_favored'];
      
     //attributes ---------------------------------------
     public function getPosterPathAttribute()
@@ -34,12 +34,26 @@ class Movie extends Model
            ->orWhere('year','like',"%$search%");
         });
      }
+    
+     public function scopeWhenFavorite($query, $favorite)
+     {
+         return $query->when($favorite, function ($q) {
+ 
+             return $q->whereHas('users', function ($qu) {
+ 
+                 return $qu->where('user_id', auth()->user()->id);
+             });
+ 
+         });
+ 
+     }// end of scopeWhenFavorite
+
 
      public function scopeWhenCategory($query , $category){
 
         return $query->when($category, function ($q) use( $category){
          
-            return $q->whereHas('categories',function($q){
+            return $q->whereHas('categories',function($q) use( $category){
 
                return $q->whereIn('category_id',(array)$category)->orWhereIn('name',(array)$category);
         
@@ -47,6 +61,23 @@ class Movie extends Model
 
         });
      }
+
+
+    public function getIsFavoredAttribute(){
+        if (auth()->user()) {
+            return (bool)$this->users()->where('user_id',auth()->user()->id)->count();
+        }
+        return false;
+    }
+
+        //relations ------------------------------------
+
+    
+        public function users()
+        {
+            return $this->belongsToMany(User::class, 'user_movie');
+    
+        }// end of users
 
 }
 

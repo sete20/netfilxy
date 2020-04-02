@@ -34,7 +34,7 @@
         }
 
         .easy-autocomplete {
-            width: 90%;
+            width: 50%;
         }
 
         .easy-autocomplete input {
@@ -42,7 +42,7 @@
         }
 
         .eac-icon-left .eac-item img {
-            max-height: 80px !important;
+            max-height: 5f0px !important;
         }
     </style>
 </head>

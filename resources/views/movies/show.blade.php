@@ -42,7 +42,7 @@
                             <a href="#" class="btn btn-primary text-capitalize movie__fav-btn">
                                             <span class="far fa-heart movie__fav-icon movie-{{ $movie->id }} {{ $movie->is_favored ? 'fw-900' : '' }}"
                                                   data-movie-id="{{ $movie->id }}"
-                                                  data-url="#"
+                                                  data-url="{{ route('movies.toggle_favorite', $movie->id) }}"
                                             >
                                             </span>
                                 add to favorite
@@ -103,7 +103,7 @@
                                 @auth
                                     <i class="far fa-heart {{ $related_movie->is_favored ? 'fw-900' : ''}} fa-1x align-self-center movie__fav-icon movie-{{ $related_movie->id }}"
                                        data-movie-id="{{ $related_movie->id }}"
-                                       data-url="#"
+                                       data-url="{{ route('movies.toggle_favorite', $related_movie->id) }}"
                                     >
                                     </i>
                                 @else

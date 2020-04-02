@@ -39,12 +39,12 @@
                                 </p>
 
                                 <div class="movie__cta my-4">
-                                    <a href="{{route('movies.show',$latest_movie)}}" class="btn btn-primary text-capitalize mr-0 mr-md-2"><span class="fas fa-play"></span> watch now</a>
+                                    <a href="{{ route('movies.show', $latest_movie->id) }}" class="btn btn-primary text-capitalize mr-0 mr-md-2"><span class="fas fa-play"></span> watch now</a>
                                     @auth
                                         <a href="#" class="btn btn-outline-light text-capitalize movie__fav-btn">
                                             <span class="far fa-heart movie__fav-icon movie-{{ $latest_movie->id }} {{ $latest_movie->is_favored ? 'fw-900' : '' }}"
                                                   data-movie-id="{{ $latest_movie->id }}"
-                                                  data-url="#"
+                                                  data-url="{{ route('movies.toggle_favorite', $latest_movie->id) }}"
                                             >
                                             </span>
                                             add to favorite
@@ -79,7 +79,7 @@
                 <div class="row my-4">
                     <div class="col-12 d-flex justify-content-between">
                         <h3 class="listing__title text-white fw-300">{{ $category->name }}</h3>
-                        <a href="#" class="align-self-center text-capitalize text-primary">see all</a>
+                        <a href="{{ route('movies.index', ['category_name' => $category->name]) }}" class="align-self-center text-capitalize text-primary">see all</a>
                     </div>
                 </div><!-- end of row -->
 
@@ -111,11 +111,11 @@
                                 </div>
 
                                 <div class="d-flex movie__cta">
-                                    <a href="{{route('movies.show',$movie->id)}}" class="btn btn-primary text-capitalize flex-fill mr-2"><i class="fas fa-play"></i> watch now</a>
+                                    <a href="{{ route('movies.show', $movie->id) }}" class="btn btn-primary text-capitalize flex-fill mr-2"><i class="fas fa-play"></i> watch now</a>
                                     @auth
                                         <i class="far fa-heart {{ $movie->is_favored ? 'fw-900' : ''}} fa-1x align-self-center movie__fav-icon movie-{{ $movie->id }}"
                                            data-movie-id="{{ $movie->id }}"
-                                           data-url="#"
+                                           data-url="{{ route('movies.toggle_favorite', $movie->id) }}"
                                         >
 
                                         </i>

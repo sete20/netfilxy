@@ -23,7 +23,7 @@
                 @auth
                     <li class="nav-item mr-2">
                             <i class="fa fa-heart"></i>
-                            <a href="#" class="nav-link text-white" style="position: relative;">
+                            <a href="{{route('movies.index',['favorite'=>1])}}" class="nav-link text-white" style="position: relative;">
                             <i class="fa fa-heart"></i>
                             <span class="bg-primary text-white d-flex justify-content-center align-items-center"
                                   style="position: absolute; top: 0; right: -15px; width: 30px; height: 20px; border-radius: 50px;"
